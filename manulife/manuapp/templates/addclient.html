@@ -333,174 +333,232 @@
                       </a>                      
                       
                 </nav>
-                
+                {% if messages %}
+                <div class="message-container">
+                    {% for message in messages %}
+                        {% if message.tags and message.tags == 'error' %}
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Error:</strong> {{ message }} 
+                            </div>
+                        {% elif message.tags and message.tags == 'info' %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }} 
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success" role="alert">
+                            {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
                 <div class="table">
                     <section class="card shadow form-container">
-                        <div class="href-target" id="input-types"></div>
-                            <h3>Personal Details</h3>
-                        <div class="row gx-3 mb-3">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="href-target" id="input-types"></div>
+                                <h3>Personal Details</h3>
+                            <div class="row gx-3 mb-3">
 
-                            <div class="nice-form-group col-md-4">
-                                <label>Last Name</label>
-                                <input type="text" placeholder="Your Last Name" value="" />
+                                <div class="nice-form-group col-md-4">
+                                    <label>Last Name</label>
+                                    {{ client_form.last_name }}
+                                </div>
+                                <span>{{ client_form.last_name.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>First Name</label>
+                                    {{ client_form.first_name }}
+                                </div>
+                                <span>{{ client_form.first_name.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Middle Name</label>
+                                    {{ client_form.middle_name }}
+                                </div>
+                                <span>{{ client_form.middle_name.errors }}</span>
+
                             </div>
 
-                            <div class="nice-form-group col-md-4">
-                                <label>First Name</label>
-                                <input type="text" placeholder="Your First Name" value="" />
+                            <div class="row gx-3 mb-3">
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Mobile Number</label>
+                                    {{ client_form.mobile_number }}
+                                </div>
+                                <span>{{ client_form.mobile_number.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Email</label>
+                                    {{ client_form.email }}
+                                </div>
+                                <span>{{ client_form.email.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Birthday</label>
+                                    {{ client_form.birthdate }}
+                                </div>
+                                <span>{{ client_form.birthdate.errors }}</span>
+
                             </div>
 
-                            <div class="nice-form-group col-md-4">
-                                <label>Middle Name</label>
-                                <input type="text" placeholder="Your Middle Name" value="" />
+                            <br>
+                            <br>
+
+                            <h3>Plan Details</h3>
+                            <div class="row gx-3 mb-3">
+
+                                <div class="nice-form-group col-md-3">
+                                    <label>Plan</label>
+                                    {{ insurance_plan_form.product }}
+                                </div>
+                                <span>{{ insurance_plan_form.product.errors }}</span>
+
+                                <div class="nice-form-group col-md-3">
+                                    <label>Policy Status</label>
+                                    {{ insurance_plan_form.status }}
+                                </div>
+                                <span>{{ insurance_plan_form.status.errors }}</span>
+
+                                <div class="nice-form-group col-md-3">
+                                    <label>Policy Number</label>
+                                    {{ insurance_plan_form.policy_number }}
+                                </div>
+                                <span>{{ insurance_plan_form.policy_number.errors }}</span>
+
+                                <div class="nice-form-group col-md-3">
+                                    <label>Life Coverage</label>
+                                    {{ insurance_plan_form.face_amount }}
+                                </div>
+                                <span>{{ insurance_plan_form.face_amount.errors }}</span>
+
+
                             </div>
-
-                        </div>
-
-                        <div class="row gx-3 mb-3">
-
-                            <div class="nice-form-group col-md-4">
-                                <label>Mobile Number</label>
-                                <input type="tel" placeholder="Mobile Number" value="" />
-                            </div>
-
-                            <div class="nice-form-group col-md-4">
-                                <label>Email</label>
-                                <input type="tel" placeholder="Mobile Number" value="" />
-                            </div>
-
-                            <div class="nice-form-group col-md-4">
-                                <label>Birthday</label>
-                                <input type="date" placeholder="Birthday" value="" />
-                            </div>
-
-                        </div>
-
-                        <br>
-                        <br>
-
-                        <h3>Plan Details</h3>
-                        <div class="row gx-3 mb-3">
-
-                            <div class="nice-form-group col-md-3">
-                                <label>Plan</label>
-                                <input type="text" placeholder="Plan" value="" />
-                            </div>
-
-                            <div class="nice-form-group col-md-3">
-                                <label>Policy Status</label>
-                                <input type="text" placeholder="Policy Status" value="" />
-                            </div>
-
-                            <div class="nice-form-group col-md-3">
-                                <label>Policy Number</label>
-                                <input type="text" placeholder="Policy Number" value="" />
-                            </div>
-
-                            <div class="nice-form-group col-md-3">
-                                <label>Life Coverage</label>
-                                <input type="text" disabled placeholder="Life Coverage" value="" />
-                            </div>
-
-
-                        </div>
-                        <br>
-                        <br>
+                            <br>
+                            <br>
 
 
                             <h3>Additional Benefits</h3>
-                        <br>
+                            <br>
 
-                        <div class="benefits">
-                            <div class="row gx-3 mb-3">
+                            <div class="benefits">
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 1</label>
+                                    {{ insurance_plan_form.rider1 }}
+                                    {{ insurance_plan_form.rider1_amount }}
 
-                                <label><input type="checkbox"> Accidental Death</label>
-                                <select style="margin-left: 183px;">
-                                    <option value="">Amount</option>
-                                    <option value="option1">₱1,000,000.00</option>
-                                    <option value="option2">₱600,000.00</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                                <!-- <input type="text"  value="" style="margin-left: 183px" ; /> -->
+                                    <!-- <label><input type="checkbox">Rider 1</label> -->
+                                    <!-- <select style="margin-left: 183px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                    <!-- <input type="text"  value="" style="margin-left: 183px" ; /> -->
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 2</label>
+                                    {{ insurance_plan_form.rider2 }}
+                                    {{ insurance_plan_form.rider2_amount }}
+                                    <!-- <label><input type="checkbox"> Enhance Critical Illness Rider</label>
+                                    <select style="margin-left: 100px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                    <!-- <input type="text"  value="" style="margin-left: 100px;" /> -->
+                                </div>
+
+
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 3</label>
+                                    {{ insurance_plan_form.rider3 }}
+                                    {{ insurance_plan_form.rider3_amount }}
+
+                                    <!-- <label><input type="checkbox"> Maccimax</label>
+                                    <select style="margin-left: 239px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                    <!-- <input type="text"  value="" style="margin-left: 239px;" /> -->
+                                </div>
+
+
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 3</label>
+                                    {{ insurance_plan_form.rider3 }}
+                                    {{ insurance_plan_form.rider3_amount }}
+
+                                    <!-- <label><input type="checkbox"> Hospital Income </label>
+                                    <select style="margin-left: 195px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                    <!-- <input type="text"  value="" style="margin-left: 195px;" /> -->
+                                </div>
+
+
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 4</label>
+                                    {{ insurance_plan_form.rider4 }}
+                                    {{ insurance_plan_form.rider4_amount }}
+                                    <!-- <label><input type="checkbox"> Total Disability Waiver of Premium </label>
+                                    <select style="margin-left: 62px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                
+                                </div>
+
+                                <div class="row gx-3 mb-3">
+                                    <label for="">Rider 5</label>
+                                    {{ insurance_plan_form.rider5 }}
+                                    {{ insurance_plan_form.rider5_amount }}
+
+                                    <!-- <label><input type="checkbox"> Total Disability Waiver of Premium </label>
+                                    <select style="margin-left: 62px;">
+                                        <option value="">Amount</option>
+                                        <option value="option1">₱1,000,000.00</option>
+                                        <option value="option2">₱600,000.00</option>
+                                    </select> -->
+                                
+                                </div>
                             </div>
 
-                            <div class="row gx-3 mb-3">
 
-                                <label><input type="checkbox"> Enhance Critical Illness Rider</label>
-                                <select style="margin-left: 100px;">
-                                    <option value="">Amount</option>
-                                    <option value="option1">₱1,000,000.00</option>
-                                    <option value="option2">₱600,000.00</option>
-                                </select>
-                                <!-- <input type="text"  value="" style="margin-left: 100px;" /> -->
-                            </div>
+                            <!-- ////////////submit//////////// -->
 
-
-                            <div class="row gx-3 mb-3">
-
-                                <label><input type="checkbox"> Maccimax</label>
-                                <select style="margin-left: 239px;">
-                                    <option value="">Amount</option>
-                                    <option value="option1">₱1,000,000.00</option>
-                                    <option value="option2">₱600,000.00</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                                <!-- <input type="text"  value="" style="margin-left: 239px;" /> -->
-                            </div>
-
-
-                            <div class="row gx-3 mb-3">
-
-                                <label><input type="checkbox"> Hospital Income </label>
-                                <select style="margin-left: 195px;">
-                                    <option value="">Amount</option>
-                                    <option value="option1">₱1,000,000.00</option>
-                                    <option value="option2">₱600,000.00</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                                <!-- <input type="text"  value="" style="margin-left: 195px;" /> -->
-                            </div>
-
-
-                            <div class="row gx-3 mb-3">
-
-                                <label><input type="checkbox"> Total Disability Waiver of Premium </label>
-                                <select style="margin-left: 62px;">
-                                    <option value="">Amount</option>
-                                    <option value="option1">₱1,000,000.00</option>
-                                    <option value="option2">₱600,000.00</option>
-                                    <!-- Add more options as needed -->
-                                </select>
+                            <br>
+                            <br>
+                            <button type="submit" class="cta">
+                                <span class="hover-underline-animation"> Submit </span>
+                                <svg
+                                id="arrow-horizontal"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="10"
+                                viewBox="0 0 46 16"
+                                >
+                                <path
+                                    id="Path_10"
+                                    data-name="Path 10"
+                                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                                    transform="translate(30)"
+                                ></path>
+                                </svg>
+                            </button>
                             
-                            </div>
-                        </div>
-
-
-                        <!-- ////////////submit//////////// -->
-
-                        <br>
-                        <br>
-                        <button class="cta">
-                            <span class="hover-underline-animation"> Submit </span>
-                            <svg
-                              id="arrow-horizontal"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="30"
-                              height="10"
-                              viewBox="0 0 46 16"
-                            >
-                              <path
-                                id="Path_10"
-                                data-name="Path 10"
-                                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                                transform="translate(30)"
-                              ></path>
-                            </svg>
-                          </button>
-                          
-
+                        </form>
                     </section>
                 </div>
+
+
+                        
 
                 
                 
