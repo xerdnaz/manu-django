@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Clients</title>
+    <title>MANULIFE - Clients</title>
 
     <!-- Custom fonts for this template -->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -40,10 +40,10 @@
         
         .CartBtn {
             width: 150px;
-            height: 50px;
+            height: 40px;
             border-radius: 12px;
             border: none;
-            background-color: rgb(255, 208, 0);
+            background-color: #00a758;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -70,6 +70,7 @@
             overflow: hidden;
             z-index: 2;
             transition-duration: .5s;
+            color: white;
           }
           
           .icon {
@@ -82,7 +83,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgb(17, 17, 17);
+            color: white;
             z-index: 1;
             transition-duration: .5s;
             font-size: 1.04em;
@@ -121,10 +122,10 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="{% static 'img/MANUNU.png' %}" alt="Your Alt Text Here" width="50" height="50">
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">MANULIFE</div>
             </a>
 
             <!-- Divider -->
@@ -261,33 +262,37 @@
                                     </div>
                                     <div class="drop">
                                         <ul class="drop-down-list" id="drop-down-list">
+                                            <!-- <li>
+                                                <input type="checkbox" class="checkbox" id="checkbox-1" onchange="updateTable()">
+                                                <label for="checkbox-1" class="checkbox-label">No.</label>
+                                            </li> -->
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-1" checked="checked">
-                                                <label for="checkbox-1" class="checkbox-label">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-2" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-2" class="checkbox-label">Name</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-2">
-                                                <label for="checkbox-2" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-3" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-3" class="checkbox-label">Policy Number</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-3">
-                                                <label for="checkbox-3" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-4" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-4" class="checkbox-label">Plan Type</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-4">
-                                                <label for="checkbox-4" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-5" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-5" class="checkbox-label">Age</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-5">
-                                                <label for="checkbox-5" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-6" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-6" class="checkbox-label">Email</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-6">
-                                                <label for="checkbox-6" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-7" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-7" class="checkbox-label">Face Amount</label>
                                             </li>
                                             <li>
-                                                <input type="checkbox" class="checkbox" id="checkbox-7">
-                                                <label for="checkbox-7" class="checkbox-label">Checkbox label</label>
+                                                <input type="checkbox" class="checkbox" id="checkbox-8" checked="checked" onchange="updateTable()">
+                                                <label for="checkbox-8" class="checkbox-label">Plan Status</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -321,6 +326,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Name</th>
                                             <th>Policy Number</th>
                                             <th>Plan Type</th>
@@ -331,8 +337,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for client in clients %}
+                                        {% for index, client in clients.items %}
                                             <tr>
+                                                <td>{{ index }}</td>
                                                 <td>{{ client.client.last_name }}, {{ client.client.first_name }} {{ client.client.middle_name }}</td>
                                                 <td>{{ client.policy_number }}</td>
                                                 <td>{{ client.product.product_type }}</td>
@@ -343,7 +350,7 @@
                                             </tr>
                                         {% empty %}
                                             <tr>
-                                                <td colspan="3">No records yet.</td>
+                                                <td colspan="8">No records yet.</td>
                                             </tr>
 
                                         {% endfor %}
@@ -412,6 +419,66 @@
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        function updateTable() {
+            var checkboxes = document.querySelectorAll('.checkbox');
+            var tableHeaders = document.querySelectorAll('th');
+            var tableRows = document.querySelectorAll('tbody tr');
+            var anyChecked = false;
+    
+            checkboxes.forEach(function(checkbox, index) {
+                var columnIndex = index + 1; // Adding 1 because the first column is the checkbox column
+                var checked = checkbox.checked;
+    
+                if (checked) {
+                    anyChecked = true;
+                    tableHeaders[columnIndex].style.display = 'table-cell';
+                    tableRows.forEach(function(row) {
+                        row.cells[columnIndex].style.display = 'table-cell';
+                    });
+                } else {
+                    tableHeaders[columnIndex].style.display = 'none';
+                    tableRows.forEach(function(row) {
+                        row.cells[columnIndex].style.display = 'none';
+                    });
+                }
+            });
+    
+            if (!anyChecked) {
+                tableHeaders.forEach(function(header) {
+                    header.style.display = 'none';
+                });
+    
+                tableRows.forEach(function(row) {
+                    Array.from(row.cells).forEach(function(cell) {
+                        cell.style.display = 'none';
+                    });
+                });
+    
+                // Check if the "No records yet." message already exists, if not, create it
+                if (document.getElementById('noRecordsRow') === null) {
+                    var noRecordsRow = document.createElement('tr');
+                    noRecordsRow.id = 'noRecordsRow';
+                    var noRecordsCell = document.createElement('td');
+                    noRecordsCell.setAttribute('colspan', '8');
+                    noRecordsCell.textContent = 'No records yet.';
+                    noRecordsRow.appendChild(noRecordsCell);
+                    document.querySelector('tbody').appendChild(noRecordsRow);
+                }
+            } else {
+                // Remove the "No records yet." message if it exists
+                var noRecordsRow = document.getElementById('noRecordsRow');
+                if (noRecordsRow !== null) {
+                    noRecordsRow.parentNode.removeChild(noRecordsRow);
+                }
+            }
+        }
+    
+        // Initially, update the table to show all columns
+        updateTable();
+    </script>
+    
 
 </body>
 

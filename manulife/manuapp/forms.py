@@ -14,7 +14,7 @@ class ClientForm(ModelForm):
     first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "First Name", "class": "form-control"})) 
     middle_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Middle Name", "class": "form-control"}), required=False) 
     birthdate = forms.DateField(widget=forms.DateInput(attrs={"type": "date", "placeholder": "Birthdate", "class": "form-control"}))
-    mobile_number = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder": "Contact Number", "class": "form-control"}))
+    mobile_number = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Contact Number", "class": "form-control"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}))
     age = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder": "Age", "class": "form-control", "readonly": "readonly"}), required=False)
    

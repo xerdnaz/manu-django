@@ -12,7 +12,7 @@ def clients(request):
     insurance_plans = InsurancePlan.objects.all().order_by('client__last_name')
 
     context = {
-        'clients': insurance_plans
+        'clients': dict(enumerate(insurance_plans, 1))  # Enumerate the clients starting from 1
     }
     return render(request, 'clients.html', context)
 

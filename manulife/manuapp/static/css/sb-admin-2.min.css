@@ -9111,8 +9111,8 @@ a:focus {
   animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
 }
 .bg-gradient-primary {
-  background-color: #00a758;
-  background-image: linear-gradient(180deg, #00a758 10%, #00a758 100%);
+  background-color: white;
+  background-image: linear-gradient(180deg, white 10%, white 100%);
   background-size: cover;
 }
 .bg-gradient-secondary {
@@ -9767,8 +9767,10 @@ a:focus {
   background-color: #dddfeb;
 }
 .sidebar-dark .sidebar-brand {
-  color: #fff;
+  color: black;
+  font-size: large;
 }
+
 .sidebar-dark hr.sidebar-divider {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -9776,10 +9778,10 @@ a:focus {
   color: rgba(255, 255, 255, 0.4);
 }
 .sidebar-dark .nav-item .nav-link {
-  color: rgba(255, 255, 255, 0.8);
+  color: #5a5c69 !important;
 }
 .sidebar-dark .nav-item .nav-link i {
-  color: rgba(255, 255, 255, 0.3);
+  color: #5a5c69 !important;
 }
 .sidebar-dark .nav-item .nav-link:active,
 .sidebar-dark .nav-item .nav-link:focus,
@@ -9795,19 +9797,19 @@ a:focus {
   color: rgba(255, 255, 255, 0.5);
 }
 .sidebar-dark .nav-item.active .nav-link {
-  color: #fff;
+  color: black;
 }
 .sidebar-dark .nav-item.active .nav-link i {
-  color: #fff;
+  color: black;
 }
 .sidebar-dark #sidebarToggle {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: #00a758;
 }
 .sidebar-dark #sidebarToggle::after {
   color: rgba(255, 255, 255, 0.5);
 }
 .sidebar-dark #sidebarToggle:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: gray;
 }
 .sidebar-dark.toggled #sidebarToggle::after {
   color: rgba(255, 255, 255, 0.5);
