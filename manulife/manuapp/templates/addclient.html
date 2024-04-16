@@ -169,7 +169,7 @@
             transform-origin: bottom left;
           }
           
-          
+      
     </style>
 
 </head>
@@ -436,9 +436,93 @@
 
 
                             </div>
+                            
                             <br>
                             <br>
 
+                            <!-- ---------------------------------------------------------------------------------- -->
+                           
+                          
+                               
+                               
+                                <h3>Benefeciary</h3>
+                                <button id="add-more-btn">Add More</button>
+                                <div id="form-template" style="display: none;">
+                            <div class="row gx-3 mb-3">
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Last Name</label>
+                                    {{ client_form.last_name }}
+                                </div>
+                                <span>{{ client_form.last_name.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>First Name</label>
+                                    {{ client_form.first_name }}
+                                </div>
+                                <span>{{ client_form.first_name.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Middle Name</label>
+                                    {{ client_form.middle_name }}
+                                </div>
+                                <span>{{ client_form.middle_name.errors }}</span>
+
+                            </div>
+                            
+                           
+
+                            <div class="row gx-3 mb-3">
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Age</label>
+                                    {{ client_form.mobile_number }}
+                                </div>
+                                <span>{{ client_form.mobile_number.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Relationship</label>
+                                    {{ client_form.email }}
+                                </div>
+                                <span>{{ client_form.email.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Percentage</label>
+                                    {{ client_form.birthdate }}
+                                </div>
+                                <span>{{ client_form.birthdate.errors }}</span>
+
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Birthdate</label>
+                                    {{ client_form.mobile_number }}
+                                </div>
+                                <span>{{ client_form.mobile_number.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label>Type</label>
+                                    {{ client_form.email }}
+                                </div>
+                                <span>{{ client_form.email.errors }}</span>
+
+                                <div class="nice-form-group col-md-4">
+                                    <label for="birthdate">Irrevocable</label>
+                                    <select id="birthdate" name="birthdate">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <span>{{ client_form.birthdate.errors }}</span>
+                            </div>
+                            </div>
+                            <div id="cloned-forms-container"></div>
+
+                           
+                            <!-- ------------------------------------------------------------------------------------------- -->
+                            <br>
 
                             <h3>Additional Benefits</h3>
                             <br>
@@ -655,7 +739,30 @@
                         </div>
                     </div>
                 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get the form template
+    var formTemplate = document.getElementById('form-template').innerHTML;
 
+    // Get the container to hold the cloned forms
+    var clonedFormsContainer = document.getElementById('cloned-forms-container');
+
+    // Get the "Add More" button
+    var addMoreButton = document.getElementById('add-more-btn');
+
+    // Add event listener for the "Add More" button
+    addMoreButton.addEventListener('click', function() {
+        // Create a new div to hold the cloned form
+        var newFormDiv = document.createElement('div');
+
+        // Set the inner HTML of the new form div to the form template
+        newFormDiv.innerHTML = formTemplate;
+
+        // Append the new form div to the cloned forms container
+        clonedFormsContainer.appendChild(newFormDiv);
+    });
+});
+</script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
